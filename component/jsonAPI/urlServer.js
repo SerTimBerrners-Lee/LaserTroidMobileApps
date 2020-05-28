@@ -1,0 +1,1 @@
+export const ursServer = 'http://lt-admin.uxp.ru:8000';

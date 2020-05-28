@@ -1,0 +1,48 @@
+{
+  "expo": {
+    "name": "Laser Troid",
+    "slug": "paion_version4",
+    "privacy": "public",
+    "sdkVersion": "36.0.0",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "version": "2.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#041921"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lasertroid.lasertroid",
+      "buildNumber": "1.0.0",
+      "config": {
+        "googleMapsApiKey" :  "AIzaSyD1zkM6P0zoJSo9i0TZhapmtp8624WS_9g"
+      }
+    },
+    "android": {
+      "package": "com.lasertroid.lasertroid",
+      "versionCode": 1,
+      "googleServicesFile": "./google-services.json",
+      "config": {
+        "googleMaps" : {
+          "apiKey" : "AIzaSyAlGtkZLpuVA6IBj6NiceizWyStHOnawhY"
+        }
+      }
+    },
+    "description": "Приложение LASERTROID"
+  }
+}
+
+
