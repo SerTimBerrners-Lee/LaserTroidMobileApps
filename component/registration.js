@@ -36,29 +36,28 @@ export const Registration = ({ navigation }) => {
         }
     }
     const fetch = () => {
-        let result = axios.post('https://lasertroid.ru/wp-admin/admin-ajax.php', {
+        let result = axios.get('https://lasertroid.ru/wp-admin/admin-ajax.php', {
+           params: {
             action: 'registerUserLtMobile',
             login_user_mobile_register: inputNikName.value,
             name_user_mobile_register: inputName.value,
             surname_user_mobile_register: inputSurName.value,
             email_user_mobile_register: inputEmail.value,
+           }
         });
+        
         result.then(res => {
-            if(res.data.data !== 'error') {
-                if(res.data.apbct.blocked) {
-                    setMessage('Проверьте почту')
-                    return 0
-                }
-                setMessage('' + res.data.message);
-                inputNikName.onChangeText('');
-                inputName.onChangeText('');
-                inputSurName.onChangeText('');
-                inputEmail.onChangeText('');
+          if(res.data == 'errors') {
+            setMessage('Данный Емаил или Ник уже зарегестрирован')
+            return;
+          } 
 
-            } else {
-                setMessage(res.data.message);
-                return 0
-            }
+          setMessage('На указанную почту прийдут логин и пароль, проверьте входящии или спам.');
+          inputNikName.onChangeText('');
+          inputName.onChangeText('');
+          inputSurName.onChangeText('');
+          inputEmail.onChangeText('');
+      
         }).catch(err => {
             setMessage('Проверьте почту')
             return 0

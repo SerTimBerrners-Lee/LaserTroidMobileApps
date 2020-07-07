@@ -1,7 +1,6 @@
 import React, {useState } from 'react';
-import { SafeAreaView } from 'react-navigation';
-import { Button, Text, Input, Icon, Spinner } from '@ui-kitten/components';
-import { TextInput,StyleSheet, Platform,  View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Text, Input, Icon, Spinner } from '@ui-kitten/components';
+import { StyleSheet,  View, Image, KeyboardAvoidingView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import * as SQLite from 'expo-sqlite';
 import axios from 'axios';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -76,16 +75,20 @@ export const SignComponent = ({ navigation }) =>{
     Keyboard.dismiss()
     setLoad(<Spinner size='giant'/>);
 
-    let result = axios.post('https://lasertroid.ru/wp-admin/admin-ajax.php', 
-      { 
-        action: 'autoficationUserLtMobile',
-        login_user_mobile: nicname,
-        password_user_mobile: password //CzJWQ4zB
+    let result = axios.get('https://lasertroid.ru/wp-admin/admin-ajax.php', 
+      {
+        params: {
+          action: 'autoficationUserLtMobile',
+          login_user_mobile: nicname,
+          password_user_mobile: password
+        }
       });
 
     result.then(res => {
-      if(res.data.data == 'error') {
-        setMessage(res.data.message);
+      if(res.status != 200) {
+        setMessage('Произошла ощибка, повторите позже');
+      } else if(res.data == 'errors') {
+        setMessage('Пароль или логин неверные!')
       } else {
           setMessage('Здравствуй ' + res.data.data.user_login)
           setLoad(<Spinner size='giant'/>);
@@ -100,7 +103,7 @@ export const SignComponent = ({ navigation }) =>{
       
           setNicname('')
         }
-    }).catch(err => console.log(err))
+    }).catch(err => console.log(err, 'ERROR'))
   }
 
   const createTableFunction = (obj, drop = false) => {

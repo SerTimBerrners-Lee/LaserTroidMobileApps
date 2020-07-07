@@ -19,6 +19,8 @@ import { News } from './new';
 import { Post } from './Post'; 
 import { Poezdki } from './poezdki';
 import { Turnir } from './turnir';
+import { Reiting } from './Reiting';
+import { profileGaimer } from './profileGaimer';
 
 const HomeNavigator = createStackNavigator({
   Home: HomePage, 
@@ -38,8 +40,9 @@ const HomeNavigator = createStackNavigator({
   News: News,
   Post: Post,
   Poezdki: Poezdki,
-  Turnir: Turnir
-
+  Turnir: Turnir,
+  Reiting: Reiting,
+  profileGaimer: profileGaimer
 }, {
   headerMode: 'none',
 });

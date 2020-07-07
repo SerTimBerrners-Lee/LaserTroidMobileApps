@@ -40,6 +40,10 @@ export const HomePage = ({ navigation }) =>{
 
   React.useEffect(() => {
   getUser().then((user) => {
+    if(!user) {
+      return navigation.navigate('Sign');
+      
+    }
   }).catch((err) => {
     return navigation.navigate('Sign')
   })  

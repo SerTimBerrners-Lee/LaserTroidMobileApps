@@ -20,7 +20,7 @@ export const Scale = () => {
         .then((res) => {
             setContent(res.data[0])
         }).catch((err) => {
-            console.log()
+            console.log(err)
         })
     }, [])
     return (
